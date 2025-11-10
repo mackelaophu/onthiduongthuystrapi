@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "access_codes",
+  "info": {
+    "singularName": "access-code",
+    "pluralName": "access-codes",
+    "displayName": "Access Code",
+    "description": "Mã truy cập trung tâm"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "code": { "type": "string", "required": true, "unique": true },
+    "isActive": { "type": "boolean", "default": true },
+    "validFrom": { "type": "datetime" },
+    "validTo": { "type": "datetime" },
+    "isSingleUse": { "type": "boolean", "default": true },
+    "maxRedeem": { "type": "integer", "default": 1 },
+    "redeemedCount": { "type": "integer", "default": 0 },
+    "center": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::training-center.training-center",
+      "inversedBy": "access_codes",
+      "required": true
+    },
+    "invite_codes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::invite-code.invite-code",
+      "mappedBy": "access_code"
+    }
+  }
+}

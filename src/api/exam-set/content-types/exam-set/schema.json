@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_sets",
+  "info": {
+    "singularName": "exam-set",
+    "pluralName": "exam-sets",
+    "displayName": "Exam Set",
+    "description": "Bộ đề ngẫu nhiên theo danh mục và trình độ"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "totalQuestions": {
+      "type": "integer",
+      "required": true
+    },
+    "level": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::question-level.question-level",
+      "inversedBy": "exam_sets",
+      "required": true
+    },
+    "categoryQuotas": {
+      "type": "component",
+      "repeatable": true,
+      "component": "quiz.category-quota",
+      "required": true
+    }
+  }
+}

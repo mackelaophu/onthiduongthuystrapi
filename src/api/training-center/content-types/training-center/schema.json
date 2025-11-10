@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "training_centers",
+  "info": {
+    "singularName": "training-center",
+    "pluralName": "training-centers",
+    "displayName": "Training Center",
+    "description": "Thông tin trung tâm huấn luyện hoặc thi"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "slug": { "type": "uid", "targetField": "name", "required": true },
+    "address": { "type": "string" },
+    "phone": { "type": "string" },
+    "email": { "type": "email" },
+    "access_codes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::access-code.access-code",
+      "mappedBy": "center"
+    }
+  }
+}

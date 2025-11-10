@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_quiz_category_quotas",
+  "info": {
+    "displayName": "Category Quota",
+    "description": "Số câu hỏi cho từng danh mục trong 1 bộ đề"
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::question-category.question-category"
+    },
+    "questionCount": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

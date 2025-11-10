@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_quiz_answers",
+  "info": {
+    "displayName": "Answer",
+    "description": "Đáp án cho câu hỏi trắc nghiệm"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "string",
+      "required": true
+    },
+    "isCorrect": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  }
+}
