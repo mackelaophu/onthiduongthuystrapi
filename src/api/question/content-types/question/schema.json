@@ -20,7 +20,9 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "level": {
       "type": "relation",
@@ -36,12 +38,18 @@
     },
     "answers": {
       "type": "component",
-      "repeatable": true,
       "component": "quiz.answer",
+      "repeatable": true,
       "required": true
     },
     "tip": {
       "type": "richtext"
+    },
+    "tiped_question": {
+      "type": "string"
+    },
+    "tiped_content": {
+      "type": "string"
     }
   }
 }
