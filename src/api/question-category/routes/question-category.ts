@@ -1,12 +1,6 @@
-export default {
-  routes: [
-    {
-      method: 'GET',
-      path: '/question-categories/custom',
-      handler: 'question-category.customAction',
-      config: {
-        auth: false, // hoặc true tuỳ em
-      },
-    },
-  ],
-};
+// src/api/question-category/routes/question-category.ts
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter(
+  'api::question-category.question-category'
+);
