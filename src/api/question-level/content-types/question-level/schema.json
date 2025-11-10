@@ -4,7 +4,7 @@
   "info": {
     "singularName": "question-level",
     "pluralName": "question-levels",
-    "displayName": "Question Level",
+    "displayName": "Trình độ",
     "description": "Loại hình / Trình độ: Thủy thủ, Thợ máy, Lái phương tiện"
   },
   "options": {

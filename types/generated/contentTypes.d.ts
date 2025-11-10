@@ -434,7 +434,7 @@ export interface ApiAccessCodeAccessCode extends Struct.CollectionTypeSchema {
   collectionName: 'access_codes';
   info: {
     description: 'M\u00E3 truy c\u1EADp trung t\u00E2m';
-    displayName: 'Access Code';
+    displayName: 'Qu\u1EA3n l\u00FD m\u00E3 m\u1EDDi';
     pluralName: 'access-codes';
     singularName: 'access-code';
   };
@@ -445,8 +445,7 @@ export interface ApiAccessCodeAccessCode extends Struct.CollectionTypeSchema {
     center: Schema.Attribute.Relation<
       'manyToOne',
       'api::training-center.training-center'
-    > &
-      Schema.Attribute.Required;
+    >;
     code: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -480,7 +479,7 @@ export interface ApiExamSetExamSet extends Struct.CollectionTypeSchema {
   collectionName: 'exam_sets';
   info: {
     description: 'B\u1ED9 \u0111\u1EC1 ng\u1EABu nhi\u00EAn theo danh m\u1EE5c v\u00E0 tr\u00ECnh \u0111\u1ED9';
-    displayName: 'Exam Set';
+    displayName: 'Danh s\u00E1ch b\u1ED9 \u0111\u1EC1 thi';
     pluralName: 'exam-sets';
     singularName: 'exam-set';
   };
@@ -496,8 +495,7 @@ export interface ApiExamSetExamSet extends Struct.CollectionTypeSchema {
     level: Schema.Attribute.Relation<
       'manyToOne',
       'api::question-level.question-level'
-    > &
-      Schema.Attribute.Required;
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -517,7 +515,7 @@ export interface ApiInviteCodeInviteCode extends Struct.CollectionTypeSchema {
   collectionName: 'invite_codes';
   info: {
     description: 'M\u00E3 m\u1EDDi thu\u1ED9c b\u1ED9 Access Code';
-    displayName: 'Invite Code';
+    displayName: 'M\u00E3 m\u1EDDi h\u1ECDc';
     pluralName: 'invite-codes';
     singularName: 'invite-code';
   };
@@ -555,7 +553,7 @@ export interface ApiQuestionCategoryQuestionCategory
   collectionName: 'question_categories';
   info: {
     description: 'Danh m\u1EE5c c\u00E2u h\u1ECFi';
-    displayName: 'Question Category';
+    displayName: 'Danh m\u1EE5c ph\u00E2n lo\u1EA1i c\u00E2u h\u1ECFi';
     pluralName: 'question-categories';
     singularName: 'question-category';
   };
@@ -588,7 +586,7 @@ export interface ApiQuestionLevelQuestionLevel
   collectionName: 'question_levels';
   info: {
     description: 'Lo\u1EA1i h\u00ECnh / Tr\u00ECnh \u0111\u1ED9: Th\u1EE7y th\u1EE7, Th\u1EE3 m\u00E1y, L\u00E1i ph\u01B0\u01A1ng ti\u1EC7n';
-    displayName: 'Question Level';
+    displayName: 'Tr\u00ECnh \u0111\u1ED9';
     pluralName: 'question-levels';
     singularName: 'question-level';
   };
@@ -624,7 +622,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
     description: 'C\u00E2u h\u1ECFi tr\u1EAFc nghi\u1EC7m';
-    displayName: 'Question';
+    displayName: 'C\u00E2u h\u1ECFi';
     pluralName: 'questions';
     singularName: 'question';
   };
@@ -668,7 +666,7 @@ export interface ApiTrainingCenterTrainingCenter
   collectionName: 'training_centers';
   info: {
     description: 'Th\u00F4ng tin trung t\u00E2m hu\u1EA5n luy\u1EC7n ho\u1EB7c thi';
-    displayName: 'Training Center';
+    displayName: 'Danh s\u00E1ch trung t\u00E2m';
     pluralName: 'training-centers';
     singularName: 'training-center';
   };
@@ -694,7 +692,12 @@ export interface ApiTrainingCenterTrainingCenter
     name: Schema.Attribute.String & Schema.Attribute.Required;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    refCode: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    shortDescription: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    thumbnail: Schema.Attribute.Media<'images'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

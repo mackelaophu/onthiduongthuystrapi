@@ -4,12 +4,13 @@
   "info": {
     "singularName": "access-code",
     "pluralName": "access-codes",
-    "displayName": "Access Code",
+    "displayName": "Quản lý mã mời",
     "description": "Mã truy cập trung tâm"
   },
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "code": {
       "type": "string",
@@ -42,8 +43,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::training-center.training-center",
-      "inversedBy": "access_codes",
-      "required": true
+      "inversedBy": "access_codes"
     },
     "invite_codes": {
       "type": "relation",

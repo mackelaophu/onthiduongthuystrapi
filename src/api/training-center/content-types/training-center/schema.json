@@ -4,21 +4,52 @@
   "info": {
     "singularName": "training-center",
     "pluralName": "training-centers",
-    "displayName": "Training Center",
+    "displayName": "Danh sách trung tâm",
     "description": "Thông tin trung tâm huấn luyện hoặc thi"
   },
-  "options": { "draftAndPublish": true },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
   "attributes": {
-    "name": { "type": "string", "required": true },
-    "slug": { "type": "uid", "targetField": "name", "required": true },
-    "address": { "type": "string" },
-    "phone": { "type": "string" },
-    "email": { "type": "email" },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
     "access_codes": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::access-code.access-code",
       "mappedBy": "center"
+    },
+    "refCode": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "shortDescription": {
+      "type": "text"
     }
   }
 }

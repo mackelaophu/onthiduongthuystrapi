@@ -4,7 +4,7 @@
   "info": {
     "singularName": "invite-code",
     "pluralName": "invite-codes",
-    "displayName": "Invite Code",
+    "displayName": "Mã mời học",
     "description": "Mã mời thuộc bộ Access Code"
   },
   "options": {

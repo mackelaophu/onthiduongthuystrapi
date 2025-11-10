@@ -4,7 +4,7 @@
   "info": {
     "singularName": "exam-set",
     "pluralName": "exam-sets",
-    "displayName": "Exam Set",
+    "displayName": "Danh sách bộ đề thi",
     "description": "Bộ đề ngẫu nhiên theo danh mục và trình độ"
   },
   "options": {
@@ -24,13 +24,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::question-level.question-level",
-      "inversedBy": "exam_sets",
-      "required": true
+      "inversedBy": "exam_sets"
     },
     "categoryQuotas": {
       "type": "component",
-      "repeatable": true,
       "component": "quiz.category-quota",
+      "repeatable": true,
       "required": true
     }
   }

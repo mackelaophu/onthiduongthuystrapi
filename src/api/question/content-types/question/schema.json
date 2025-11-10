@@ -4,7 +4,7 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "Question",
+    "displayName": "Câu hỏi",
     "description": "Câu hỏi trắc nghiệm"
   },
   "options": {

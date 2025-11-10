@@ -4,7 +4,7 @@
   "info": {
     "singularName": "question-category",
     "pluralName": "question-categories",
-    "displayName": "Question Category",
+    "displayName": "Danh mục phân loại câu hỏi",
     "description": "Danh mục câu hỏi"
   },
   "options": {
