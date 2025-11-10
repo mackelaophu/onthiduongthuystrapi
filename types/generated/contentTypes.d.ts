@@ -655,7 +655,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     questionText: Schema.Attribute.RichText & Schema.Attribute.Required;
     tip: Schema.Attribute.RichText;
-    tiped_content: Schema.Attribute.String;
+    tiped_content: Schema.Attribute.Text;
     tiped_question: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
