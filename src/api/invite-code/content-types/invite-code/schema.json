@@ -7,16 +7,28 @@
     "displayName": "Invite Code",
     "description": "Mã mời thuộc bộ Access Code"
   },
-  "options": { "draftAndPublish": false },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
   "attributes": {
-    "code": { "type": "string", "required": true, "unique": true },
-    "redeemed": { "type": "boolean", "default": false },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "redeemed": {
+      "type": "boolean",
+      "default": false
+    },
     "access_code": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::access-code.access-code",
-      "inversedBy": "invite_codes",
-      "required": true
+      "inversedBy": "invite_codes"
+    },
+    "jwt": {
+      "type": "string"
     }
   }
 }

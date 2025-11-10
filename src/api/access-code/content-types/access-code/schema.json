@@ -7,15 +7,37 @@
     "displayName": "Access Code",
     "description": "Mã truy cập trung tâm"
   },
-  "options": { "draftAndPublish": true },
+  "options": {
+    "draftAndPublish": true
+  },
   "attributes": {
-    "code": { "type": "string", "required": true, "unique": true },
-    "isActive": { "type": "boolean", "default": true },
-    "validFrom": { "type": "datetime" },
-    "validTo": { "type": "datetime" },
-    "isSingleUse": { "type": "boolean", "default": true },
-    "maxRedeem": { "type": "integer", "default": 1 },
-    "redeemedCount": { "type": "integer", "default": 0 },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "validFrom": {
+      "type": "datetime"
+    },
+    "validTo": {
+      "type": "datetime"
+    },
+    "isSingleUse": {
+      "type": "boolean",
+      "default": true
+    },
+    "maxRedeem": {
+      "type": "integer",
+      "default": 1
+    },
+    "redeemedCount": {
+      "type": "integer",
+      "default": 0
+    },
     "center": {
       "type": "relation",
       "relation": "manyToOne",
