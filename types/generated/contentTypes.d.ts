@@ -107,43 +107,6 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface AdminAuditLog extends Struct.CollectionTypeSchema {
-  collectionName: 'strapi_audit_logs';
-  info: {
-    displayName: 'Audit Log';
-    pluralName: 'audit-logs';
-    singularName: 'audit-log';
-  };
-  options: {
-    draftAndPublish: false;
-    timestamps: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    action: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
-      Schema.Attribute.Private;
-    payload: Schema.Attribute.JSON;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
-  };
-}
-
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -464,6 +427,275 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     username: Schema.Attribute.String;
+  };
+}
+
+export interface ApiAccessCodeAccessCode extends Struct.CollectionTypeSchema {
+  collectionName: 'access_codes';
+  info: {
+    description: 'M\u00E3 truy c\u1EADp trung t\u00E2m';
+    displayName: 'Access Code';
+    pluralName: 'access-codes';
+    singularName: 'access-code';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    center: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::training-center.training-center'
+    > &
+      Schema.Attribute.Required;
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    invite_codes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::invite-code.invite-code'
+    >;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    isSingleUse: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::access-code.access-code'
+    > &
+      Schema.Attribute.Private;
+    maxRedeem: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
+    publishedAt: Schema.Attribute.DateTime;
+    redeemedCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    validFrom: Schema.Attribute.DateTime;
+    validTo: Schema.Attribute.DateTime;
+  };
+}
+
+export interface ApiExamSetExamSet extends Struct.CollectionTypeSchema {
+  collectionName: 'exam_sets';
+  info: {
+    description: 'B\u1ED9 \u0111\u1EC1 ng\u1EABu nhi\u00EAn theo danh m\u1EE5c v\u00E0 tr\u00ECnh \u0111\u1ED9';
+    displayName: 'Exam Set';
+    pluralName: 'exam-sets';
+    singularName: 'exam-set';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoryQuotas: Schema.Attribute.Component<'quiz.category-quota', true> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    level: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::question-level.question-level'
+    > &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::exam-set.exam-set'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    totalQuestions: Schema.Attribute.Integer & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInviteCodeInviteCode extends Struct.CollectionTypeSchema {
+  collectionName: 'invite_codes';
+  info: {
+    description: 'M\u00E3 m\u1EDDi thu\u1ED9c b\u1ED9 Access Code';
+    displayName: 'Invite Code';
+    pluralName: 'invite-codes';
+    singularName: 'invite-code';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    access_code: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::access-code.access-code'
+    > &
+      Schema.Attribute.Required;
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::invite-code.invite-code'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    redeemed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionCategoryQuestionCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'question_categories';
+  info: {
+    description: 'Danh m\u1EE5c c\u00E2u h\u1ECFi';
+    displayName: 'Question Category';
+    pluralName: 'question-categories';
+    singularName: 'question-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-category.question-category'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionLevelQuestionLevel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'question_levels';
+  info: {
+    description: 'Lo\u1EA1i h\u00ECnh / Tr\u00ECnh \u0111\u1ED9: Th\u1EE7y th\u1EE7, Th\u1EE3 m\u00E1y, L\u00E1i ph\u01B0\u01A1ng ti\u1EC7n';
+    displayName: 'Question Level';
+    pluralName: 'question-levels';
+    singularName: 'question-level';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    exam_sets: Schema.Attribute.Relation<'oneToMany', 'api::exam-set.exam-set'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question-level.question-level'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    questions: Schema.Attribute.Relation<'oneToMany', 'api::question.question'>;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
+  collectionName: 'questions';
+  info: {
+    description: 'C\u00E2u h\u1ECFi tr\u1EAFc nghi\u1EC7m';
+    displayName: 'Question';
+    pluralName: 'questions';
+    singularName: 'question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answers: Schema.Attribute.Component<'quiz.answer', true> &
+      Schema.Attribute.Required;
+    category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::question-category.question-category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images'>;
+    level: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::question-level.question-level'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::question.question'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    questionText: Schema.Attribute.RichText & Schema.Attribute.Required;
+    tip: Schema.Attribute.RichText;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTrainingCenterTrainingCenter
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'training_centers';
+  info: {
+    description: 'Th\u00F4ng tin trung t\u00E2m hu\u1EA5n luy\u1EC7n ho\u1EB7c thi';
+    displayName: 'Training Center';
+    pluralName: 'training-centers';
+    singularName: 'training-center';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    access_codes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::access-code.access-code'
+    >;
+    address: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::training-center.training-center'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -971,13 +1203,19 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
-      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::session': AdminSession;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::access-code.access-code': ApiAccessCodeAccessCode;
+      'api::exam-set.exam-set': ApiExamSetExamSet;
+      'api::invite-code.invite-code': ApiInviteCodeInviteCode;
+      'api::question-category.question-category': ApiQuestionCategoryQuestionCategory;
+      'api::question-level.question-level': ApiQuestionLevelQuestionLevel;
+      'api::question.question': ApiQuestionQuestion;
+      'api::training-center.training-center': ApiTrainingCenterTrainingCenter;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
