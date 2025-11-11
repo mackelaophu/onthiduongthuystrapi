@@ -1,37 +1,17 @@
-import type { StrapiApp } from '@strapi/strapi/admin';
+// ./src/admin/app.tsx
+import InviteToolsPage from './extensions/pages/InviteToolsPage';
 
 export default {
-  config: {
-    locales: [
-      // 'ar',
-      // 'fr',
-      // 'cs',
-      // 'de',
-      // 'dk',
-      // 'es',
-      // 'he',
-      // 'id',
-      // 'it',
-      // 'ja',
-      // 'ko',
-      // 'ms',
-      // 'nl',
-      // 'no',
-      // 'pl',
-      // 'pt-BR',
-      // 'pt',
-      // 'ru',
-      // 'sk',
-      // 'sv',
-      // 'th',
-      // 'tr',
-      // 'uk',
-      // 'vi',
-      // 'zh-Hans',
-      // 'zh',
-    ],
-  },
-  bootstrap(app: StrapiApp) {
-    console.log(app);
+  register(app: any) {
+    app.addMenuLink({
+      to: '/invite-tools',
+      icon: app.icons.Download,
+      intlLabel: {
+        id: 'invite-tools.menu.label',
+        defaultMessage: 'Invite Tools',
+      },
+      Component: InviteToolsPage,
+      permissions: [], // để ai cũng truy cập được
+    });
   },
 };
