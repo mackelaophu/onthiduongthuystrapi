@@ -434,7 +434,7 @@ export interface ApiAccessCodeAccessCode extends Struct.CollectionTypeSchema {
   collectionName: 'access_codes';
   info: {
     description: 'M\u00E3 truy c\u1EADp trung t\u00E2m';
-    displayName: 'Qu\u1EA3n l\u00FD m\u00E3 m\u1EDDi';
+    displayName: 'Qu\u1EA3n l\u00FD m\u00E3 m\u1EDDi h\u1ECDc';
     pluralName: 'access-codes';
     singularName: 'access-code';
   };
@@ -529,7 +529,11 @@ export interface ApiInviteCodeInviteCode extends Struct.CollectionTypeSchema {
     >;
     code: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.Unique;
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 5;
+        minLength: 5;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
